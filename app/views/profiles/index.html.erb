@@ -3,12 +3,18 @@
 <% @profiles.each do |profile| %>
   <%= link_to(profile) do %>
     <div>
-      <%= profile.user.first_name %>
-      <%= profile.user.last_name %>
-      <%= profile.profile_image_data %>
-      <%= profile.bio %>
-      <%= profile.locations %>
-      <%= profile.price %>
+      <h2><%= profile.user.first_name %> <%= profile.user.last_name %></h2>
+      <% if profile.profile_image %>
+        <%= image_tag profile.profile_image_url(:thumb) %>
+      <% end %>
+      <h5><%= profile.bio %></h5>
+      <p><%= profile.locations %></p>
+      <h3>$<%= profile.price %></h3>
+      <% unless @reviews[profile.id - 1].nil? %>
+        <%= @reviews[profile.id - 1].round %>
+      <% else %>
+        <p>No Reviews</p>
+      <% end %>
     </div>
   <% end %>
 <% end %>

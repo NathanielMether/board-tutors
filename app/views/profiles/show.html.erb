@@ -1,16 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <%= @profile.user.first_name %>
-  <%= @profile.user.last_name %>
-</p>
-
 <% if @profile.profile_image %>
   <%= image_tag @profile.profile_image_url(:original) %>
 <% end %>
 
+<h1>
+  <%= @profile.user.first_name %>
+  <%= @profile.user.last_name %>
+</h1>
+
 <p>
-  <%= @profile.price %>
+  <%= @average_rating.round %>
+</p>
+
+<p>
+  $<%= @profile.price %>
 </p>
 
 <p>
@@ -26,3 +30,10 @@
   <%= @profile.description %>
 </p>
 
+<h3>
+  <%= @last_review.user.first_name %>
+</h3>
+
+<p>
+  <%= @last_review.content %>
+</p>

@@ -5,11 +5,19 @@ class ProfilesController < ApplicationController
   # GET /profiles.json
   def index
     @profiles = Profile.all
+
+    @reviews = []
+    @profiles.each do |profile|
+      @average_rating = Review.where(profile_id: profile).average(:rating)
+      @reviews << @average_rating
+    end
   end
 
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    @last_review = Review.where(profile_id: @profile).last
+    @average_rating = Review.where(profile_id: @profile).average(:rating)
   end
 
   # GET /profiles/new
