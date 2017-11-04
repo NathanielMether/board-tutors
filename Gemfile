@@ -38,6 +38,7 @@ gem 'image_processing'
 gem 'mini_magick'
 gem 'shrine'
 gem 'aws-sdk', '~> 3'
+gem "algoliasearch-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
