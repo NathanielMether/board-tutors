@@ -1,39 +1,28 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @profile.user %>
+  <%= @profile.user.first_name %>
+  <%= @profile.user.last_name %>
 </p>
 
-<p>
-  <strong>Profile image data:</strong>
-  <%= @profile.profile_image_data %>
-</p>
+<% if @profile.profile_image %>
+  <%= image_tag @profile.profile_image_url(:original) %>
+<% end %>
 
 <p>
-  <strong>Board sport:</strong>
-  <%= @profile.board_sport %>
-</p>
-
-<p>
-  <strong>Price:</strong>
   <%= @profile.price %>
 </p>
 
 <p>
-  <strong>Locations:</strong>
   <%= @profile.locations %>
 </p>
 
 <p>
-  <strong>Bio:</strong>
-  <%= @profile.bio %>
+  <%= @profile.board_sport %>
 </p>
 
+<strong>Description</strong>
 <p>
-  <strong>Description:</strong>
   <%= @profile.description %>
 </p>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
