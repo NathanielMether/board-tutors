@@ -30,6 +30,14 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
+gem "algoliasearch-rails"
+
+# Shrine Dependencies
+gem 'fastimage'
+gem 'image_processing'
+gem 'mini_magick'
+gem 'shrine'
+gem 'aws-sdk', '~> 3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

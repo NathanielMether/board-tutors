@@ -17,8 +17,12 @@
   </div>
 
   <div class="field">
-    <%= form.label :profile_image_data %>
-    <%= form.text_field :profile_image_data, id: :profile_profile_image_data %>
+    <%= form.label :profile_image %>
+    <%= form.file_field :profile_image, id: :profile_profile_image %>
+  </div>
+
+  <div class="field">
+    Remove attachment: <%= form.check_box :remove_profile_image %>
   </div>
 
   <div class="field">

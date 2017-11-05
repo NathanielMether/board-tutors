@@ -4,12 +4,36 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
+    @profiles = Profile.search(params[:term]) & Profile.search(params[:location]) & Profile.search(params[:board])
+
+    @reviews = []
+    @profiles.each do |profile|
+      @average_rating = Review.where(profile_id: profile).average(:rating)
+      @reviews << @average_rating
+    end
+
+    if params[:sort] == 'Rating'
+      @profiles.sort_by! do |profile|
+        @reviews[profile.id - 1]
+      end
+      @profiles = @profiles.reverse
+    elsif params[:sort] == 'Price(lowest)'
+      @profiles.sort_by! do |profile|
+        profile[:price]
+      end
+    elsif params[:sort] == 'Price(highest)'
+      @profiles.sort_by! do |profile|
+        profile[:price]
+      end
+      @profiles = @profiles.reverse
+    end
   end
 
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    @last_review = Review.where(profile_id: @profile).last
+    @average_rating = Review.where(profile_id: @profile).average(:rating)
   end
 
   # GET /profiles/new
@@ -69,6 +93,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:user_id, :profile_image_data, :board_sport, :price, :locations, :bio, :description)
+      params.require(:profile).permit(:user_id, :profile_image, :remove_profile_image, :board_sport, :price, :locations, :bio, :description)
     end
 end

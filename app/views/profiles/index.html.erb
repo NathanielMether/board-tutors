@@ -1,39 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Profiles</h1>
+<%= form_tag(profiles_path, method: :get) do %>
+  <div>
+    <%= select_tag "location", options_for_select(["Point Leo", "Gunnamatta", "Mt. Hotham" ], params[:location]), include_blank: "Location" %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Profile image data</th>
-      <th>Board sport</th>
-      <th>Price</th>
-      <th>Locations</th>
-      <th>Bio</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <%= select_tag "board", options_for_select(["Surf", "Snow Board" ], params[:board]), include_blank: "Board" %>
 
-  <tbody>
-    <% @profiles.each do |profile| %>
-      <tr>
-        <td><%= profile.user %></td>
-        <td><%= profile.profile_image_data %></td>
-        <td><%= profile.board_sport %></td>
-        <td><%= profile.price %></td>
-        <td><%= profile.locations %></td>
-        <td><%= profile.bio %></td>
-        <td><%= profile.description %></td>
-        <td><%= link_to 'Show', profile %></td>
-        <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
-        <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <%= select_tag "sort", options_for_select(["Rating", "Price(lowest)", "Price(highest)" ], params[:sort]), include_blank: "Sort" %>
+  </div>
+
+  <div>
+    <%= text_field_tag :term, params[:term] %>
+    <%= submit_tag 'Search', name: nil %>
+  </div>
+<% end %>
+
+<% @profiles.each do |profile| %>
+  <%= link_to(profile) do %>
+    <div>
+      <h2><%= profile.user.first_name %> <%= profile.user.last_name %></h2>
+      <% if profile.profile_image %>
+        <%= image_tag profile.profile_image_url(:thumb) %>
+      <% end %>
+      <h5><%= profile.bio %></h5>
+      <p><%= profile.locations %></p>
+      <h3>$<%= profile.price %></h3>
+      <% unless @reviews[profile.id - 1].nil? %>
+        <%= @reviews[profile.id - 1].round %>
+      <% else %>
+        <p>No Reviews</p>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
 
 <br>
-
-<%= link_to 'New Profile', new_profile_path %>
