@@ -1,9 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <%= form_tag(profiles_path, method: :get) do %>
-  <%= select_tag :location_term, params[:location_term] %>
-  <%= text_field_tag :term, params[:term] %>
-  <%= submit_tag 'Search', name: nil %>
+  <div>
+    <%= select_tag "location", options_for_select(["Point Leo", "Gunnamatta", "Mt. Hotham" ], params[:location]), include_blank: "Location" %>
+
+    <%= select_tag "board", options_for_select(["Surf", "Snow Board" ], params[:board]), include_blank: "Board" %>
+  </div>
+
+  <div>
+    <%= text_field_tag :term, params[:term] %>
+    <%= submit_tag 'Search', name: nil %>
+  </div>
 <% end %>
 
 <% @profiles.each do |profile| %>

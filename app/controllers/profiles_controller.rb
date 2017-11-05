@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.search(params[:term])
+    @profiles = Profile.search(params[:term]) & Profile.search(params[:location]) & Profile.search(params[:board])
 
     @reviews = []
     @profiles.each do |profile|
@@ -77,6 +77,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:user_id, :profile_image, :remove_profile_image, :board_sport, :price, :locations, :bio, :description, :term)
+      params.require(:profile).permit(:user_id, :profile_image, :remove_profile_image, :board_sport, :price, :locations, :bio, :description, :term, :location)
     end
 end
