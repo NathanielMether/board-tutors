@@ -12,6 +12,7 @@ class ProfilesController < ApplicationController
       @reviews << @average_rating
     end
 
+    # Sort profiles depending on params
     if params[:sort] == 'Rating'
       @profiles.sort_by! do |profile|
         @reviews[profile.id - 1]
@@ -34,6 +35,14 @@ class ProfilesController < ApplicationController
   def show
     @last_review = Review.where(profile_id: @profile).last
     @average_rating = Review.where(profile_id: @profile).average(:rating)
+
+    # Check if there is an existing conversation between current user and the profile
+    @conversation = (Conversation.where(user1_id: @profile.user.id) & Conversation.where(user2_id: current_user.id)) | (Conversation.where(user2_id: @profile.user.id) & Conversation.where(user1_id: current_user.id))
+
+    # If there is no conversation then create a new one
+    if @conversation.empty?
+      @conversation = Conversation.new
+    end
   end
 
   # GET /profiles/new

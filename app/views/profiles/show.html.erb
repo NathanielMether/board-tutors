@@ -37,3 +37,16 @@
 <p>
   <%= @last_review.content %>
 </p>
+
+<% if @conversation.kind_of?(Array) %>
+  <%= link_to "Message", conversation_messages_url(@conversation) %>
+<% else %>
+  <%= form_with(model: @conversation, local: true) do |form| %>
+
+    <%= form.hidden_field :user2_id, :value => @profile.user.id %>
+
+    <div class="actions">
+      <%= form.submit "Message" %>
+    </div>
+  <% end %>
+<% end %>
