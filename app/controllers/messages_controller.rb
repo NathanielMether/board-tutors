@@ -16,6 +16,12 @@ class MessagesController < ApplicationController
   # GET /messages/new
   def new
     @message = Message.new
+    @messages = Message.where("conversation_id = #{@conversation.id}")
+    if @conversation.user1 == current_user
+      @receiver = @conversation.user2.first_name + " " + @conversation.user2.last_name
+    else 
+      @receiver = @conversation.user1.first_name + " " + @conversation.user1.last_name
+    end
   end
 
   # GET /messages/1/edit
@@ -31,7 +37,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to conversation_messages_url(@conversation), notice: 'Message was successfully created.' }
+        format.html { redirect_to new_conversation_message_url(@conversation), notice: 'Message was successfully created.' }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }

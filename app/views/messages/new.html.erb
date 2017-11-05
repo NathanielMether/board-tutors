@@ -1,5 +1,11 @@
-<h1>New Message</h1>
+<h1><%= @receiver %></h1>
+
+<% @messages.each do |message| %>
+  <div class="message-box">
+    <p><%= message.content %></p>
+  </div>
+<% end %>
 
 <%= render 'form', message: @message %>
 
-<%= link_to 'Back', messages_path %>
+<%= link_to 'Back', conversation_messages_path(@conversation) %>

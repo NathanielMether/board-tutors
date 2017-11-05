@@ -4,10 +4,10 @@
 
 <% @messages.each do |message| %>
   <div class="message-box">
-    <p><%= emojify(message.content) %></p>
+    <p><%= message.content %></p>
   </div>
 <% end %>
 
 <br>
 
-<%= link_to 'New Message', new_conversation_message_path(@conversation) %>
+<%= link_to 'Send', new_conversation_message_path(@conversation) %>
