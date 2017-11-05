@@ -11,6 +11,22 @@ class ProfilesController < ApplicationController
       @average_rating = Review.where(profile_id: profile).average(:rating)
       @reviews << @average_rating
     end
+
+    if params[:sort] == 'Rating'
+      @profiles.sort_by! do |profile|
+        @reviews[profile.id - 1]
+      end
+      @profiles = @profiles.reverse
+    elsif params[:sort] == 'Price(lowest)'
+      @profiles.sort_by! do |profile|
+        profile[:price]
+      end
+    elsif params[:sort] == 'Price(highest)'
+      @profiles.sort_by! do |profile|
+        profile[:price]
+      end
+      @profiles = @profiles.reverse
+    end
   end
 
   # GET /profiles/1
@@ -77,6 +93,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:user_id, :profile_image, :remove_profile_image, :board_sport, :price, :locations, :bio, :description, :term, :location)
+      params.require(:profile).permit(:user_id, :profile_image, :remove_profile_image, :board_sport, :price, :locations, :bio, :description)
     end
 end

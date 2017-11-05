@@ -5,6 +5,8 @@
     <%= select_tag "location", options_for_select(["Point Leo", "Gunnamatta", "Mt. Hotham" ], params[:location]), include_blank: "Location" %>
 
     <%= select_tag "board", options_for_select(["Surf", "Snow Board" ], params[:board]), include_blank: "Board" %>
+
+    <%= select_tag "sort", options_for_select(["Rating", "Price(lowest)", "Price(highest)" ], params[:sort]), include_blank: "Sort" %>
   </div>
 
   <div>
