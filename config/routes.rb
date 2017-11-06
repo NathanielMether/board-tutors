@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  resources :bookings
+
   get '/support' => 'support#new'
   post '/support' => 'support#create'
 
