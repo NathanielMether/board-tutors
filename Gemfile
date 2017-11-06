@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 # gem "algoliasearch-rails"
 gem 'devise'
 gem 'mailgun-ruby', '~>1.1.6'
+gem "simple_calendar", "~> 2.0"
+gem 'validates_overlap'
 
 # Shrine Dependencies
 gem 'fastimage'

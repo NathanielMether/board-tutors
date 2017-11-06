@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :set_profile
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
   # GET /bookings
@@ -25,10 +26,12 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
+    @booking.profile = @profile
+    @booking.user = current_user
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+        format.html { redirect_to profile_bookings_url(@profile), notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new }
@@ -56,7 +59,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
     respond_to do |format|
-      format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
+      format.html { redirect_to profile_bookings_url, notice: 'Booking was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,8 +70,12 @@ class BookingsController < ApplicationController
       @booking = Booking.find(params[:id])
     end
 
+    def set_profile
+      @profile = Profile.find(params[:profile_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:lesson_date, :start_time, :end_time, :profile_id, :user_id)
+      params.require(:booking).permit(:lesson_date, :start_time, :end_time)
     end
 end

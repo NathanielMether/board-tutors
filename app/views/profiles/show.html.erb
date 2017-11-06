@@ -38,6 +38,8 @@
   <%= @last_review.content %>
 </p>
 
+<%= link_to "Book", new_profile_booking_url(@profile)  %>
+
 <% if @conversation.kind_of?(Array) %>
   <%= link_to "Message", conversation_messages_url(@conversation) %>
 <% else %>

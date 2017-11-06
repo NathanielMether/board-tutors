@@ -1,4 +1,4 @@
-<%= form_with(model: booking, local: true) do |form| %>
+<%= form_with(model: [@profile, booking], local: true) do |form| %>
   <% if booking.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
@@ -24,16 +24,6 @@
   <div class="field">
     <%= form.label :end_time %>
     <%= form.time_select :end_time, id: :booking_end_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :profile_id %>
-    <%= form.text_field :profile_id, id: :booking_profile_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :booking_user_id %>
   </div>
 
   <div class="actions">
