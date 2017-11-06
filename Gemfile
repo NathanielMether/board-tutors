@@ -29,8 +29,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# gem "algoliasearch-rails"
 gem 'devise'
-gem "algoliasearch-rails"
+gem 'mailgun-ruby', '~>1.1.6'
 
 # Shrine Dependencies
 gem 'fastimage'

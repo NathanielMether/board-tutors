@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/support' => 'support#new'
+  post '/support' => 'support#create'
 
   get 'home/index'
 
