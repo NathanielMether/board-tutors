@@ -34,6 +34,7 @@ gem 'devise'
 gem 'mailgun-ruby', '~>1.1.6'
 gem "simple_calendar", "~> 2.0"
 gem 'validates_overlap'
+gem 'stripe'
 
 # Shrine Dependencies
 gem 'fastimage'

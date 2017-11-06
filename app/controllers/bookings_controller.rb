@@ -16,6 +16,7 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
+    @amount = @profile.price * 100
   end
 
   # GET /bookings/1/edit
@@ -29,14 +30,31 @@ class BookingsController < ApplicationController
     @booking.profile = @profile
     @booking.user = current_user
 
+    # Amount in cents
+    @amount = @booking.profile.price * 100
+
     respond_to do |format|
       if @booking.save
+        customer = Stripe::Customer.create(
+          :email => current_user.email,
+          :source  => params[:stripeToken]
+        )
+
+        charge = Stripe::Charge.create(
+          :customer    => customer.id,
+          :amount      => @amount,
+          :description => "Lesson with " + @booking.profile.user.first_name,
+          :currency    => 'aud'
+        )
+
+        @booking.charge_identifier = charge.id
         format.html { redirect_to profile_bookings_url(@profile), notice: 'Booking was successfully created.' }
-        format.json { render :show, status: :created, location: @booking }
+        format.json { render :index, status: :ok, location: @booking }
       else
         format.html { render :new }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
+
     end
   end
 

@@ -17,8 +17,8 @@
     <% @bookings.each do |booking| %>
       <tr>
         <td><%= booking.lesson_date %></td>
-        <td><%= booking.start_time %></td>
-        <td><%= booking.end_time %></td>
+        <td><%= booking.start_time.hour %>:<%= booking.start_time.min %></td>
+        <td><%= booking.end_time.hour %>:<%= booking.end_time.min %></td>
         <td><%= booking.profile.user.first_name %> <%= booking.profile.user.last_name %></td>
         <td><%= link_to 'Edit', edit_profile_booking_path(@profile, booking) %></td>
         <td><%= link_to 'Destroy', profile_booking_url(@profile, booking), method: :delete, data: { confirm: 'Are you sure?' } %></td>
