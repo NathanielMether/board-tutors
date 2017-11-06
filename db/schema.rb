@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20171103110508) do
     t.datetime "updated_at", null: false
     t.index ["profile_id"], name: "index_bookings_on_profile_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
 
   create_table "conversations", force: :cascade do |t|
     t.bigint "user1_id"

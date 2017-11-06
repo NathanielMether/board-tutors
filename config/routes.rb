@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-
-  resources :bookings
-
   get '/support' => 'support#new'
   post '/support' => 'support#create'
 
@@ -10,6 +7,7 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :profiles do
+    resources :bookings
     resources :reviews
   end
 
