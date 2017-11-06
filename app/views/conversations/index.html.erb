@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<% @conversations.each do |conversation| %>
+  <p><%= conversation.user2.first_name %></p>
+  <% unless Message.where("conversation_id = #{conversation.id}").length == 0 %>
+  <%= link_to conversation_messages_path(conversation) do %>
+      <%= Message.where("conversation_id = #{conversation.id}").last.content %></p>
+  <% end %>
+    <%= Message.where("conversation_id = #{conversation.id}").last.created_at.hour %>:<%= Message.where("conversation_id = #{conversation.id}").last.created_at.min %>
+  <% end %>
+<% end %>
+

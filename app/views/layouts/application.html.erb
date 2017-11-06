@@ -11,6 +11,11 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+
     <%= yield %>
+
+    <div class="navbar">
+      <%= link_to 'search', home_index_url %>
+    </div>
   </body>
 </html>

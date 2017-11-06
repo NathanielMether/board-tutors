@@ -1,39 +1,52 @@
 <p id="notice"><%= notice %></p>
 
+<% if @profile.profile_image %>
+  <%= image_tag @profile.profile_image_url(:original) %>
+<% end %>
+
+<h1>
+  <%= @profile.user.first_name %>
+  <%= @profile.user.last_name %>
+</h1>
+
 <p>
-  <strong>User:</strong>
-  <%= @profile.user %>
+  <%= @average_rating.round %>
 </p>
 
 <p>
-  <strong>Profile image data:</strong>
-  <%= @profile.profile_image_data %>
+  $<%= @profile.price %>
 </p>
 
 <p>
-  <strong>Board sport:</strong>
-  <%= @profile.board_sport %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @profile.price %>
-</p>
-
-<p>
-  <strong>Locations:</strong>
   <%= @profile.locations %>
 </p>
 
 <p>
-  <strong>Bio:</strong>
-  <%= @profile.bio %>
+  <%= @profile.board_sport %>
 </p>
 
+<strong>Description</strong>
 <p>
-  <strong>Description:</strong>
   <%= @profile.description %>
 </p>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+<h3>
+  <%= @last_review.user.first_name %>
+</h3>
+
+<p>
+  <%= @last_review.content %>
+</p>
+
+<% if @conversation.kind_of?(Array) %>
+  <%= link_to "Message", conversation_messages_url(@conversation) %>
+<% else %>
+  <%= form_with(model: @conversation, local: true) do |form| %>
+
+    <%= form.hidden_field :user2_id, :value => @profile.user.id %>
+
+    <div class="actions">
+      <%= form.submit "Message" %>
+    </div>
+  <% end %>
+<% end %>

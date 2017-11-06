@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%=  %></h1>
+
+<% @messages.each do |message| %>
+  <div class="message-box">
+    <p><%= message.content %></p>
+  </div>
+<% end %>
+
+<br>
+
+<%= link_to 'Send', new_conversation_message_path(@conversation) %>
