@@ -17,13 +17,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :start_time %>
-    <%= form.time_select :start_time, id: :booking_start_time %>
+    <%= form.label :start_at %>
+    <%= form.time_select :start_at, id: :booking_start_at %>
   </div>
 
   <div class="field">
-    <%= form.label :end_time %>
-    <%= form.time_select :end_time, id: :booking_end_time %>
+    <%= form.label :end_at %>
+    <%= form.time_select :end_at, id: :booking_end_at %>
   </div>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"

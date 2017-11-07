@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Bookings</h1>
+<h1>Your Bookings</h1>
 
 <table>
   <thead>
@@ -17,8 +17,8 @@
     <% @bookings.each do |booking| %>
       <tr>
         <td><%= booking.lesson_date %></td>
-        <td><%= booking.start_time.hour %>:<%= booking.start_time.min %></td>
-        <td><%= booking.end_time.hour %>:<%= booking.end_time.min %></td>
+        <td><%= booking.start_at.hour %>:<%= booking.start_at.min %></td>
+        <td><%= booking.end_at.hour %>:<%= booking.end_at.min %></td>
         <td><%= booking.profile.user.first_name %> <%= booking.profile.user.last_name %></td>
         <td><%= link_to 'Edit', edit_profile_booking_path(@profile, booking) %></td>
         <td><%= link_to 'Destroy', profile_booking_url(@profile, booking), method: :delete, data: { confirm: 'Are you sure?' } %></td>
