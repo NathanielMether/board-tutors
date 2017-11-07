@@ -1,0 +1,3 @@
+class ConversationPolicy < ApplicationPolicy
+
+end

@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # gem "algoliasearch-rails"
 gem 'devise'
+gem "pundit"
 gem 'mailgun-ruby', '~>1.1.6'
 gem "simple_calendar", "~> 2.0"
 gem 'validates_overlap'
