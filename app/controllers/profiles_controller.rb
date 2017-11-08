@@ -43,6 +43,9 @@ class ProfilesController < ApplicationController
     if @conversation.empty?
       @conversation = Conversation.new
     end
+
+    # Get the all profiles that belong to the user
+    @profiles = Profile.where(user: @profile.user)
   end
 
   # GET /profiles/new
@@ -58,6 +61,7 @@ class ProfilesController < ApplicationController
   # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
+    @profile.user = current_user
 
     respond_to do |format|
       if @profile.save
@@ -105,6 +109,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:user_id, :profile_image, :remove_profile_image, :board_sport, :price, :locations, :bio, :description)
+      params.require(:profile).permit(:profile_image, :remove_profile_image, :board_sport, :price, :locations, :bio, :description)
     end
 end

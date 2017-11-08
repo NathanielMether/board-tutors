@@ -1,2 +1,13 @@
-<h1>Menu#index</h1>
-<p>Find me in app/views/menu/index.html.erb</p>
+<%= link_to(@profile) do %>
+  <% if @profile.profile_image %>
+    <%= image_tag @profile.profile_image_url(:thumb) %>
+  <% end %>
+  <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
+  <p>View your profile</p>
+<% end %>
+
+<p><%=  link_to "Become a Board Tutor", new_profile_url %></p>
+
+<p><%=  link_to "Support Email", support_url %></p>
+
+<p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>

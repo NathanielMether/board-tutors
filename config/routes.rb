@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'menu/index'
+  get 'menu' => 'menu#index'
 
   get 'contacts' => 'contacts#index'
 

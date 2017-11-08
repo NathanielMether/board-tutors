@@ -12,11 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :profile_user_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :profile_image %>
     <%= form.file_field :profile_image, id: :profile_profile_image %>
   </div>
@@ -27,7 +22,7 @@
 
   <div class="field">
     <%= form.label :board_sport %>
-    <%= form.text_field :board_sport, id: :profile_board_sport %>
+    <%= form.select :board_sport, ['surfing', 'snow boarding'], id: :profile_board_sport %>
   </div>
 
   <div class="field">

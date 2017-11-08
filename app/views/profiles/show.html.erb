@@ -6,7 +6,8 @@
 
 <h1>
   <%= @profile.user.first_name %>
-  <%= @profile.user.last_name %>
+  <%= @profile.user.last_name %> - 
+  <%= @profile.board_sport.capitalize %>
 </h1>
 
 <p>
@@ -22,7 +23,9 @@
 </p>
 
 <p>
-  <%= @profile.board_sport %>
+  <% @profiles.each do |profile| %>
+    <%= link_to profile.board_sport, profile %>
+  <% end %>
 </p>
 
 <strong>Description</strong>
@@ -30,30 +33,36 @@
   <%= @profile.description %>
 </p>
 
-<h3>
-  <%= @last_review.user.first_name %>
-</h3>
+<% unless @profile.user == current_user %>
+  <h3>
+    <%= @last_review.user.first_name %>
+  </h3>
 
-<p>
-  <%= @last_review.content %>
-</p>
+  <p>
+    <%= @last_review.content %>
+  </p>
 
-<%= link_to "Book", new_profile_booking_url(@profile)  %>
+  <%= link_to "Book", new_profile_booking_url(@profile)  %>
 
-<% if @conversation.kind_of?(Array) %>
-  <%= link_to "Message", conversation_messages_url(@conversation) %>
+  <% if @conversation.kind_of?(Array) %>
+    <%= link_to "Message", conversation_messages_url(@conversation) %>
+  <% else %>
+    <%= form_with(model: @conversation, local: true) do |form| %>
+
+      <%= form.hidden_field :user2_id, :value => @profile.user.id %>
+
+      <div class="actions">
+        <%= form.submit "Message" %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div>
+    <%= link_to "See all reviews", profile_reviews_url(@profile) %> | 
+    <%= link_to "Review", new_profile_review_url(@profile) %>
+  </div>
 <% else %>
-  <%= form_with(model: @conversation, local: true) do |form| %>
-
-    <%= form.hidden_field :user2_id, :value => @profile.user.id %>
-
-    <div class="actions">
-      <%= form.submit "Message" %>
-    </div>
+  <%= link_to edit_profile_path(@profile) do %>
+    <img src="<%= image_path("edit.png") %>" alt="edit" width="75" height="75">
   <% end %>
 <% end %>
-
-<div>
-  <%= link_to "See all reviews", profile_reviews_url(@profile) %> | 
-  <%= link_to "Review", new_profile_review_url(@profile) %>
-</div>
