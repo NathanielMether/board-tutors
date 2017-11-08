@@ -48,6 +48,9 @@ class BookingsController < ApplicationController
           :currency    => 'aud'
         )
 
+        # New conversation between the 2 users so that they can be added to the contacts page
+        Conversation.create(user1_id: current_user.id, user2_id: @booking.profile.user.id)
+
         @booking.charge_identifier = charge.id
         format.html { redirect_to profile_bookings_url(@profile), notice: 'Booking was successfully created.' }
         format.json { render :index, status: :ok, location: @booking }

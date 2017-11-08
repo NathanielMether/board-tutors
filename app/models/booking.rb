@@ -2,6 +2,7 @@ class Booking < ApplicationRecord
   belongs_to :profile
   belongs_to :user
   validates :start_at, :end_at, :overlap => { :scope => "profile_id" }
+  validates :start_at, :end_at, :overlap => { :scope => "user_id" }
 
   def update_time_date
     start_year = self.start_at.change(:year => self.lesson_date.year)
