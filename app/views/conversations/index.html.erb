@@ -2,11 +2,11 @@
 
 <% @conversations.each do |conversation| %>
   <% unless Message.where("conversation_id = #{conversation.id}").length == 0 %>
-    <p><%= conversation.user2.first_name %></p>
-    <%= link_to conversation_messages_path(conversation) do %>
+    <%= link_to new_conversation_message_path(conversation) do %>
+      <p><%= conversation.user2.first_name %></p>
       <%= Message.where("conversation_id = #{conversation.id}").last.content %></p>
+      <%= Message.where("conversation_id = #{conversation.id}").last.created_at.hour %>:<%= Message.where("conversation_id = #{conversation.id}").last.created_at.min %>
     <% end %>
-    <%= Message.where("conversation_id = #{conversation.id}").last.created_at.hour %>:<%= Message.where("conversation_id = #{conversation.id}").last.created_at.min %>
   <% end %>
 <% end %>
 

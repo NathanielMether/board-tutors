@@ -49,7 +49,9 @@ class BookingsController < ApplicationController
         )
 
         # New conversation between the 2 users so that they can be added to the contacts page
-        Conversation.create(user1_id: current_user.id, user2_id: @booking.profile.user.id)
+        if Conversation.where(user1_id: current_user.id, user2_id: @booking.profile.user.id).empty?
+          Conversation.create(user1_id: current_user.id, user2_id: @booking.profile.user.id)
+        end
 
         @booking.charge_identifier = charge.id
         format.html { redirect_to profile_bookings_url(@profile), notice: 'Booking was successfully created.' }

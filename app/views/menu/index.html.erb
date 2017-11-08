@@ -1,9 +1,11 @@
-<%= link_to(@profile) do %>
-  <% if @profile.profile_image %>
-    <%= image_tag @profile.profile_image_url(:thumb) %>
+<% if @profile %>
+  <%= link_to(@profile) do %>
+    <% if @profile.profile_image %>
+      <%= image_tag @profile.profile_image_url(:thumb) %>
+    <% end %>
+    <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
+    <p>View your profile</p>
   <% end %>
-  <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
-  <p>View your profile</p>
 <% end %>
 
 <p><%=  link_to "Become a Board Tutor", new_profile_url %></p>
