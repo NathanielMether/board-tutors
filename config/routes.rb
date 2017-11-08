@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  get 'menu/index'
+
+  get 'contacts' => 'contacts#index'
+
   get '/support' => 'support#new'
   post '/support' => 'support#create'
-
-  get 'home/index'
 
   root "home#index"
 

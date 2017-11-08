@@ -1,9 +1,15 @@
 <h1><%= @receiver %></h1>
 
 <% @messages.each do |message| %>
-  <div class="message-box">
-    <p><%= message.content %></p>
-  </div>
+  <% if message.sender == current_user %>
+    <div class="message-box right-message-box">
+      <p><%= message.content %></p>
+    </div>
+  <% else %>
+    <div class="message-box">
+      <p><%= message.content %></p>
+    </div>
+  <% end %>
 <% end %>
 
 <%= render 'form', message: @message %>
