@@ -1,4 +1,4 @@
-<h1>Home#index</h1>
 <p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
 
-<%= link_to 'Surfing', profiles_url %>
+<h1><%= link_to 'Surfing', profiles_url( :board => "Surf") %></h1>
+<h1><%= link_to 'Snow Boarding', profiles_url( :board => "Snow Board") %></h1>
