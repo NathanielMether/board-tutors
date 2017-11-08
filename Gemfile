@@ -37,6 +37,7 @@ gem "simple_calendar", "~> 2.0"
 gem 'validates_overlap'
 gem 'stripe'
 gem 'pry'
+gem 'omniauth-facebook'
 
 # Shrine Dependencies
 gem 'fastimage'
