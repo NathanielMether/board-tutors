@@ -1,5 +1,10 @@
 # Board Tutors 
 
+## Live app
+
+https://gentle-garden-50610.herokuapp.com/
+
+
 ## Problem: 
 -	It can be difficult for someone wanting to learn a board sport (e.g. skate boarding, surfing) on their own. Finding the right teacher based on price, quality and location can also be a challenge.
 
@@ -53,6 +58,7 @@ This is an update I made to the schema to handle setting available times by boar
 ## Setup and configure:
 1.	Create, migrate and seed database.
 2.	Add keys to .env file
+
 a.	Amazon S3 and IAM
 -	S3_ACCESS_KEY_ID
 -	S3_SECRET_ACCESS_KEY
