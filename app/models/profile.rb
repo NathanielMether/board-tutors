@@ -1,6 +1,9 @@
 class Profile < ApplicationRecord
   include ProfileImageUploader[:profile_image]
   belongs_to :user
+  validates :price, presence: true
+  validates :price, numericality: { greater_than: 0 }
+  validates :locations, presence: true
 
   def self.search(term)
     if term
