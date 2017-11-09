@@ -16,6 +16,9 @@ class MessagesController < ApplicationController
   # GET /messages/new
   def new
     @message = Message.new
+    unless (@conversation.user1.id == current_user.id) | (@conversation.user2.id == current_user.id)
+      authorize @message
+    end
     @messages = Message.where("conversation_id = #{@conversation.id}")
     if @conversation.user1 == current_user
       @receiver = @conversation.user2.first_name + " " + @conversation.user2.last_name

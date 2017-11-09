@@ -1,24 +1,26 @@
 <h1>Contacts</h1>
 
 <h2>Teachers</h2>
-<% @contacts.each do |contact| %>
-  <% if contact.user1 == current_user %>
-    <%= link_to conversation_messages_path(contact) do %>
-      <h4><%= contact.user2.first_name %> <%= contact.user2.last_name %></h4>
-      <% if @profile.profile_image %>
-        <%= image_tag @profile.profile_image_url(:thumb) %>
+<% unless @contacts.empty? %>
+  <% @contacts.each do |contact| %>
+    <% if contact.user1 == current_user %>
+      <%= link_to new_conversation_message_path(contact) do %>
+        <h4><%= contact.user2.first_name %> <%= contact.user2.last_name %></h4>
+        <% if @profile.profile_image %>
+          <%= image_tag @profile.profile_image_url(:thumb) %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
-<% end %>
 
-<h2>Students</h2>
-<% @contacts.each do |contact| %>
-  <% if contact.user2 == current_user %>
-    <%= link_to conversation_messages_path(contact) do %>
-      <h4><%= contact.user1.first_name %> <%= contact.user1.last_name %></h4>
-      <% if @profile.profile_image %>
-        <%= image_tag @profile.profile_image_url(:thumb) %>
+  <h2>Students</h2>
+  <% @contacts.each do |contact| %>
+    <% if contact.user2 == current_user %>
+      <%= link_to new_conversation_message_path(contact) do %>
+        <h4><%= contact.user1.first_name %> <%= contact.user1.last_name %></h4>
+        <% if @profile.profile_image %>
+          <%= image_tag @profile.profile_image_url(:thumb) %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>

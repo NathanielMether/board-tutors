@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.where("profile_id = #{@profile.id}") & Booking.where("user_id = #{current_user.id}")
+    @bookings = Booking.where("user_id = #{current_user.id}")
   end
 
   # GET /bookings/1
@@ -16,7 +16,6 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
-    @amount = @profile.price * 100
   end
 
   # GET /bookings/1/edit
@@ -31,7 +30,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
 
     # Amount in cents
-    @amount = @booking.profile.price * 100
+    @amount = @booking.profile.price * 100 * @booking.lesson_length
 
     respond_to do |format|
       @booking.update_time_date

@@ -4,6 +4,7 @@ class Booking < ApplicationRecord
   validates :start_at, :end_at, :overlap => { :scope => "profile_id" }
   validates :start_at, :end_at, :overlap => { :scope => "user_id" }
 
+  # Time field on form sets year to 2000 so this will give correct date
   def update_time_date
     start_year = self.start_at.change(:year => self.lesson_date.year)
     start_month = start_year.change(:month => self.lesson_date.month)
@@ -14,5 +15,11 @@ class Booking < ApplicationRecord
     end_month = end_year.change(:month => self.lesson_date.month)
     end_day = end_month.change(:day => self.lesson_date.day)
     self.end_at = end_day
+  end
+
+  # Gives total lesson time in hours
+  def lesson_length
+    seconds = self.end_at - self.start_at
+    seconds / 3600.0
   end
 end

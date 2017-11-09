@@ -8,8 +8,8 @@ class ContactsController < ApplicationController
     # Get the other profile in the conversation to access a profile picture
     if @contacts.first.user1 == current_user
       @profile = Profile.where(user: as_user1.first.user2).first
-    else
-      @profile = Profile.where(user: as_user1.first.user1).first
+    elsif @contacts.first.user2 == current_user
+      @profile = Profile.where(user: as_user2.first.user1).first
     end
   end
 end
