@@ -4,35 +4,38 @@
   <%= image_tag @profile.profile_image_url(:original) %>
 <% end %>
 
-<h1>
-  <%= @profile.user.first_name %>
-  <%= @profile.user.last_name %> - 
-  <%= @profile.board_sport.capitalize %>
-</h1>
+<div class="center flex">
+  <h1 class="inline">
+    <%= @profile.user.first_name %>
+    <%= @profile.user.last_name %> - 
+    <%= @profile.board_sport.capitalize %>
+  </h1>
 
-<p>
-  <%= @average_rating.round %>
-</p>
+  <h3 class="inline">
+    Rating: <%= @average_rating.round %>/5
+  </h3>
+</div>
 
-<p>
-  $<%= @profile.price %>
-</p>
+<h2 class="center">
+  $<%= @profile.price %>/hr
+</h2>
 
-<p>
+<p class="center">
   <%= @profile.locations %>
 </p>
 
-<p>
+<p class="center flex">
   <% @profiles.each do |profile| %>
     <%= link_to profile.board_sport, profile %>
   <% end %>
 </p>
 
-<strong>Description</strong>
+<h2>Description</h2>
 <p>
   <%= @profile.description %>
 </p>
 
+<h2>Reviews</h2>
 <% unless @profile.user == current_user %>
   <h3>
     <%= @last_review.user.first_name %>
@@ -41,6 +44,15 @@
   <p>
     <%= @last_review.content %>
   </p>
+
+  <div>
+    <%= link_to "See all reviews", profile_reviews_url(@profile) %> | 
+    <%= link_to "Review", new_profile_review_url(@profile) %>
+  </div>
+
+  <br>
+  <br>
+
 
   <%= link_to "Book", new_profile_booking_url(@profile)  %>
 
@@ -57,10 +69,6 @@
     <% end %>
   <% end %>
 
-  <div>
-    <%= link_to "See all reviews", profile_reviews_url(@profile) %> | 
-    <%= link_to "Review", new_profile_review_url(@profile) %>
-  </div>
 <% else %>
   <%= link_to edit_profile_path(@profile) do %>
     <img src="<%= image_path("edit.png") %>" alt="edit" width="75" height="75">

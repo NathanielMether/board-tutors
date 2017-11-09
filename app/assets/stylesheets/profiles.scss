@@ -18,3 +18,12 @@
 input, textarea, select, button {
   font-size: 30px;
 }
+
+.inline {
+  display: inline-block;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-around;
+}
