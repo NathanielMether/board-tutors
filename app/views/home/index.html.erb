@@ -1,4 +1,12 @@
-<p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
-
-<h1><%= link_to 'Surfing', profiles_url( :board => "Surf") %></h1>
-<h1><%= link_to 'Snow Boarding', profiles_url( :board => "Snow Board") %></h1>
+<%= link_to profiles_url( :board => "Surf") do %>
+  <div class="center">
+    <img src="<%= image_path("surf.jpg") %>" width="80%" height="auto">
+    <h1>Surf</h1>
+  </div>
+<% end %>
+<%= link_to profiles_url( :board => "Snow Board") do%>
+  <div class="center">
+    <img src="<%= image_path("snow-board.jpg") %>" width="80%" height="auto">
+    <h1>Snow Board</h1>
+  </div>
+<% end %>

@@ -8,7 +8,7 @@
 
 john = User.create!(email: 'example1@test.com', password: 'password', first_name: 'John', last_name: 'Smith')
 nathaniel = User.create!(email: 'example2@test.com', password: 'password', first_name: 'Nathaniel', last_name: 'Mether')
-ruegen = User.create!(email: 'example3@test.com', password: 'password', first_name: 'Ruegen', last_name: 'Aschenbrener')
+ruegen = User.create!(email: 'example3@test.com', password: 'password', first_name: 'Ruegen', last_name: 'Aschenbrenner')
 sarah = User.create!(email: 'example4@test.com', password: 'password', first_name: 'Sarah', last_name: 'Smith')
 amy = User.create!(email: 'example5@test.com', password: 'password', first_name: 'Amy', last_name: 'Smith')
 

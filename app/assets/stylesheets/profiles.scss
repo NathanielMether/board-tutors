@@ -1,3 +1,20 @@
 // Place all the styles related to the Profiles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.card {
+  border-style: solid;
+}
+
+.search {
+  border-style: solid;
+}
+
+.select-item {
+  display: inline-block;
+  border-style: solid;
+}
+
+input, textarea, select, button {
+  font-size: 30px;
+}
