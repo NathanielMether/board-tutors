@@ -1,11 +1,14 @@
 <script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '126220284725761',
+      appId      : ENV.fetch("APP_ID"),
+      cookie     : true,
       xfbml      : true,
       version    : 'v2.11'
     });
-    FB.AppEvents.logPageView();
+      
+    FB.AppEvents.logPageView();   
+      
   };
 
   (function(d, s, id){
