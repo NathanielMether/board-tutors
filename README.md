@@ -45,7 +45,8 @@ This is an update I made to the schema to handle setting available times by boar
 -	Setting the start and end time attributes in bookings as Time instead of DateTime
 -	Making stripe the amount being charged – may need javascript
 -	Setting up Facebook sign up
-Favourite parts:
+
+## Favourite parts:
 -	Creating search and filtering functionality
 -	Validations and user restrictions, surprisingly…
 
