@@ -17,29 +17,29 @@ If a user wants to become a board tutor they can create a profile for themselves
 ### User Stories and Project Plan - Trello
 I began the design of my app by creating a list of user stories, the full list can be found on my trello board - https://trello.com/b/mnuzxwj0/board-tutors
 
-![](assets/images/user-stories.png)
+![](app/assets/images/user-stories.png)
 
 From the user stories I was able to make a rough list of the models that would be required to meet their requirements. 
 
 ### Wireframes - Figma
 The next step was to create wireframes for the main pages of the app. This fleshed out what attributes the models would have and how the user journey would flow. https://www.figma.com/file/MagRMujaUS2GIC0c9EdgFhJd/Board-Tutors 
 
-![](assets/images/wireframes.png)
+![](app/assets/images/wireframes.png)
 
 ### ERD - DBDesigner
 After the user stories and wireframes were created I was ready to created a database schema. https://dbdesigner.net/designer/schema/124335
 
-![](assets/images/erd.png)
+![](app/assets/images/erd.png)
 
 This is the schema I used for my current design but I realized towards the end of the development of my app that it wasn’t enough fulfill all the requirements of my user stories. 
 
-![](assets/images/erd-update.png)
+![](app/assets/images/erd-update.png)
 
 This is an update I made to the schema to handle setting available times by board tutors and displaying what times are unavailable in the calendar.
 
 ### Kanban - Trello
 
-![](assets/images/agile-plan.png)
+![](app/assets/images/agile-plan.png)
 
 ## Challenges:
 -	Setting the start and end time attributes in bookings as Time instead of DateTime
