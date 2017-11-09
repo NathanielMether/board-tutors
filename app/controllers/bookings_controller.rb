@@ -20,6 +20,9 @@ class BookingsController < ApplicationController
 
   # GET /bookings/1/edit
   def edit
+    unless (@booking.user == current_user) | (@booking.profile.user == current_user)
+      authorize @booking
+    end
   end
 
   # POST /bookings
@@ -42,7 +45,7 @@ class BookingsController < ApplicationController
 
         charge = Stripe::Charge.create(
           :customer    => customer.id,
-          :amount      => @amount,
+          :amount      => @amount.to_i,
           :description => "Lesson with " + @booking.profile.user.first_name,
           :currency    => 'aud'
         )

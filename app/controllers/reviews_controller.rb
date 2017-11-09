@@ -20,6 +20,9 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
+    unless @review.user == current_user
+      authorize @review
+    end
   end
 
   # POST /reviews
